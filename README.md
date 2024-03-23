@@ -32,11 +32,20 @@ $ yarn
 ```
 
 ## Running the app
+create `.env` file by copying from `.env.example`
+
+To run postgres locally:
+```bash
+docker compose up
+```
+This will provide you a postgres admin at http://localhost:8080
 
 ```bash
 # watch mode
-$ yarn start
+$ yarn start:dev
 ```
+
+Server will be hosted at `http://localhost:3000` and will have Swagger UI to play with APIs
 
 ### Code Organization
 
@@ -100,4 +109,3 @@ By default, when you run backend using `yarn start` we do not execute the migrat
 To execute them, we need to run
 
 >  yarn migrate:dev
-
