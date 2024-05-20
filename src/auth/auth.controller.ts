@@ -40,6 +40,7 @@ export class AuthController {
   @Post("login")
   async login(@Body() body: UserLogInDto) {
     const user = await this.userService.getUserByEmail(body.email);
+    console.log('user',user)
     if (!user) {
       throw new HttpException(
         `User with email ${body.email} and role ${body.role} doesn't exists`,

@@ -4,6 +4,11 @@ import { ExtractJwt, StrategyOptions } from "passport-jwt";
 import { env } from "src/config";
 import { IUser } from "./User";
 
+interface Payload {
+  email: string;
+  role: string;
+}
+
 @Injectable()
 export class AuthService {
   private logger = new Logger(AuthService.name);
@@ -13,16 +18,17 @@ export class AuthService {
   private expiry = 7 * 24 * 60 * 60;
   private algorithm: jwt.Algorithm = "HS256";
 
+  
   async vendJWT(user: IUser, secretKey?: string) {
-    console.log(user);
+    console.log(user)
     const options: jwt.SignOptions = {
       expiresIn: this.expiry,
       subject: user.email,
       audience: this.audience,
       issuer: this.issuer,
       algorithm: this.algorithm,
+      
     };
-
     return jwt.sign(user, secretKey || this.secretKey, options);
   }
 
